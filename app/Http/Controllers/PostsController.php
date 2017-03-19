@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\Post;
+
+
+class PostsController extends Controller
+{
+    public function index()
+    {
+      $posts = Post::latest()->get();
+
+      return view('posts.index', compact('posts'));
+    }
+
+
+    public function show(Post $post)
+    {
+      return view('posts.show', compact('post'));
+    }
+
+    public function create()
+    {
+      return view('posts.create');
+    }
+
+    public function store()
+    {
+      //Here is where we create a new post using the request database,
+      // $post = new Post;
+      //
+      //
+      // $post->title = request('title');
+      // $post->body = request('body');
+      //
+      // // dd(request(['title','body']));
+      //
+      // //We'll save within the database
+      // $post->save();
+
+      $this->validate(request(), [
+          'title' => 'required|max:255',
+          'body' => 'required'
+      ]);
+
+      Post::create(request(['title', 'body']));
+
+      //And then redirect to the homepage.
+      return redirect('/');
+    }
+
+}
