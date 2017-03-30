@@ -6,59 +6,59 @@
 
     <h1> {{ $post->title }}</h1>
 
-         {{ $post->body }}
+    {{ $post->body }}
 
-         <hr>
+    <hr>
 
-         <div class="comments">
+    <div class="comments">
 
-           <ul class="list-group">
+      <ul class="list-group">
 
-             @foreach ($post->comments as $comment)
+        @foreach ($post->comments as $comment)
 
-               <li class="list-group-item">
+          <li class="list-group-item">
 
-                 <strong>
-                   {{ $comment->created_at->diffForHumans() }}: &nbsp;
+            <strong>
+              {{ $comment->created_at->diffForHumans() }}: &nbsp;
 
-                 </strong>
+            </strong>
 
 
-                 {{ $comment->body }}
-               </li>
+            {{ $comment->body }}
+          </li>
 
-             @endforeach
+        @endforeach
+        
+      </ul>
 
-           </ul>
+    </div>
 
-         </div>
+    {{-- Add a comment --}}
 
-         {{-- Add a comment --}}
+    <hr>
 
-         <hr>
+    <div class="card">
 
-         <div class="card">
+      <div class="card-block">
 
-           <div class="card-block">
+        <form method="POST" action="/posts/{{ $post->id }}/comments">
+          {{ csrf_field() }}
 
-             <form method="POST" action="/posts/{{ $post->id }}/comments">
-               {{ csrf_field() }}
+          <div class="form-group">
+            <textarea name="body" placeholder="Type your comment here..." class="form-control" required></textarea>
+          </div>
 
-                <div class="form-group">
-                  <textarea name="body" placeholder="Type your comment here..." class="form-control" required></textarea>
-                </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Add comment</button>
+          </div>
 
-                <div class="form-group">
-                <button type="submit" class="btn btn-primary">Add comment</button>
-                </div>
+        </form>
 
-             </form>
+        @include('layouts.errors')
 
-             @include('layouts.errors')
+      </div>
 
-           </div>
-
-         </div>
+    </div>
 
   </div>
 
