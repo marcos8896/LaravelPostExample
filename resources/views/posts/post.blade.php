@@ -6,11 +6,15 @@
 
       {{ $post->title }}
 
-      </a>
+    </a>
 
-    </h2>
+  </h2>
 
-  <p class="blog-post-meta">Created at: {{ $post->updated_at->toFormattedDateString() }}</p>
+  <p class="blog-post-meta">
+    {{ $post->user->name }} on
+    {{ $post->updated_at->toFormattedDateString() }}
+
+  </p>
 
   {{ $post->body }}
 

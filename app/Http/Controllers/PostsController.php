@@ -9,6 +9,13 @@ use App\Post;
 
 class PostsController extends Controller
 {
+
+    public function __construct()
+    {
+      $this->middleware('auth')->except(['index', 'show']);
+    }
+
+
     public function index()
     {
       $posts = Post::latest()->get();
@@ -46,7 +53,9 @@ class PostsController extends Controller
           'body' => 'required'
       ]);
 
-      Post::create(request(['title', 'body']));
+      auth()->user()->publish(
+        new Post(request(['title', 'body']))
+      );
 
       //And then redirect to the homepage.
       return redirect('/');
