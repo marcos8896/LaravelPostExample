@@ -2,17 +2,13 @@
 
 namespace App\Mail;
 
-use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class Welcome extends Mailable
+class WelcomeAgain extends Mailable
 {
-    //All public variables will be available on the email view.
-    public $user;
-
     use Queueable, SerializesModels;
 
     /**
@@ -20,10 +16,10 @@ class Welcome extends Mailable
      *
      * @return void
      */
-     public function __construct(User $user)
-     {
-       $this->user = $user;
-     }
+    public function __construct()
+    {
+        //
+    }
 
     /**
      * Build the message.
@@ -32,6 +28,6 @@ class Welcome extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.welcome');
+        return $this->markdown('emails.welcome-again');
     }
 }
