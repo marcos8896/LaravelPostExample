@@ -15,6 +15,9 @@ class RegistrationController extends Controller
     {
       $form->persist();
 
+      //session('message', 'Here is a default message'); - The message exist in the whole session linked to the user.
+      session()->flash('message', 'Thanks so much for signing up!');
+
       //Redirect to the homepage.
       return redirect()->home();
 

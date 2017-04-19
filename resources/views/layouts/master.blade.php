@@ -1,11 +1,4 @@
-<html>
-  <head>
-    <title>My Application</title>
-  </head>
-
-  <body>
-
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -25,6 +18,12 @@
     @include('layouts.nav')
     @include('layouts.header')
 
+    @if ($flash = session('message'))
+      <div id="flash-message" class="alert alert-success" role="alert">
+        {{ $flash }}
+      </div>
+    @endif
+
     <div class="container">
 
       <div class="row">
@@ -36,9 +35,6 @@
 
       @include('layouts.footer')
     </div>
-
-  </body>
-</html>
 
   </body>
 </html>
