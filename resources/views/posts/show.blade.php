@@ -58,12 +58,7 @@
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-block">
-        <h5 class="list-group">Tags related to this post.</h5>
-        @include('layouts.tags')
-      </div>
-    </div>
+    @include('layouts.tags')
 
   </div>
 
